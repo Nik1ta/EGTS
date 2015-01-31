@@ -459,6 +459,7 @@ begin
   except // Блок try добавлен 15.01.2015
     on E : Exception do begin
       Log(E.ClassName + ' вызвана ошибка, с сообщением : ' + E.Message);
+      Log('Строка 462');
       Exit;
     end;
   end;
