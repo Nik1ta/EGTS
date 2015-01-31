@@ -1,0 +1,120 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  Caption = #1057#1077#1088#1074#1080#1089' EGTS'
+  ClientHeight = 477
+  ClientWidth = 756
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Grid1: TGrid
+    Position.X = 16.000000000000000000
+    Position.Y = 16.000000000000000000
+    Size.Width = 721.000000000000000000
+    Size.Height = 201.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 10
+    RowCount = 75
+    RowHeight = 21.000000000000000000
+  end
+  object bStart: TButton
+    Position.X = 64.000000000000000000
+    Position.Y = 424.000000000000000000
+    TabOrder = 23
+    Text = #1057#1090#1072#1088#1090
+    OnClick = bStartClick
+  end
+  object bStop: TButton
+    Enabled = False
+    Position.X = 600.000000000000000000
+    Position.Y = 424.000000000000000000
+    TabOrder = 37
+    Text = #1057#1090#1086#1087
+    OnClick = bStopClick
+  end
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DragMode = dmAutomatic
+    Position.X = 16.000000000000000000
+    Position.Y = 240.000000000000000000
+    Size.Width = 721.000000000000000000
+    Size.Height = 153.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 38
+    OnChange = Memo1Change
+  end
+  object eServer: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 51
+    Text = '46.183.183.2'
+    Position.X = 160.000000000000000000
+    Position.Y = 424.000000000000000000
+  end
+  object Label1: TLabel
+    Position.X = 160.000000000000000000
+    Position.Y = 408.000000000000000000
+    Text = #1057#1077#1088#1074#1077#1088
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 20000
+    OnTimer = Timer1Timer
+    Left = 488
+    Top = 384
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'User_Name=admin'
+      'Server=192.168.1.1'
+      'Password=89031295610'
+      'CharacterSet=utf8'
+      'DriverID=MySQL'
+      'Database=gps_kolomna')
+    Connected = True
+    Left = 48
+    Top = 168
+  end
+  object FDQuery1: TFDQuery
+    Active = True
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from deviceinfo')
+    Left = 272
+    Top = 168
+  end
+  object BindSourceDB1: TBindSourceDB
+    DataSet = FDQuery1
+    ScopeMappings = <>
+    Left = 136
+    Top = 168
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 344
+    Top = 168
+    object LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      GridControl = Grid1
+      Columns = <>
+    end
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'FMX'
+    Left = 664
+    Top = 168
+  end
+  object IdTCPClient1: TIdTCPClient
+    ConnectTimeout = 0
+    Host = '46.183.183.2'
+    IPVersion = Id_IPv4
+    Port = 16111
+    ReadTimeout = 100
+    ReuseSocket = rsTrue
+    Left = 352
+    Top = 408
+  end
+end
